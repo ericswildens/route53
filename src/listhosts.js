@@ -24,7 +24,7 @@ function compactResponse(data, type, match) {
   let rr = data.ResourceRecordSets;
   let fields = [];
   for (var i in rr) {
-    if ((type == undefined || type == rr[i].Type) {
+    if (type == undefined || type == rr[i].Type) {
       let name = rr[i].Name.replace('\\052', '*');
       let value = rr[i].ResourceRecords[0].Value;
       if (!match || name.includes(match)) {
