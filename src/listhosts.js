@@ -70,7 +70,7 @@ async function _command(params, commandText, secrets = {}) {
   });
 
   // returns a promise which will be resolved before the function returns
-  const zoneParams = { HostedZoneId: secrets.route53ZoneId };
+  const zoneParams = { HostedZoneId: '/hostedzone/' + secrets.route53ZoneId };
   return route53.listResourceRecordSets(zoneParams).promise().then(
     function(data) {
       return compactResponse(data, record_type, match_string);
