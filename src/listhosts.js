@@ -3,14 +3,14 @@
 function compactResponse(data, type, match) {
   let title = 'All route53 ';
   if (!type) {
-    title += 'hostnames'
+    title += 'hostnames';
   } else {
-    title += ' ' + type + ' records'
+    title += ' ' + type + ' records';
   }
   if (!match) {
-    title += ':'
+    title += ':';
   } else {
-    title += ' containing "' + match + '":'
+    title += ' containing "' + match + '":';
   }
   let response =  {
     "response_type": "in_channel",
@@ -23,7 +23,7 @@ function compactResponse(data, type, match) {
 
   let rr = data.ResourceRecordSets;
   let fields = [];
-  for (i in rr) {
+  for (var i in rr) {
     if ((type == undefined || type == 'A') && rr[i].Type == 'A') {
       let name = rr[i].Name.replace('\\052', '*');
       let value = rr[i].ResourceRecords[0].Value;
