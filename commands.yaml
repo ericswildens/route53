@@ -1,6 +1,6 @@
 sourceBasePath: https://raw.githubusercontent.com/ericswildens/route53/master/src
 commands:
-  awsbill:
+  listhosts:
     sourcePath: /listhosts.js
     description: Lists AWS route53 managed hostnames
     options:
