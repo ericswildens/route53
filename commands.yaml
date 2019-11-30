@@ -8,3 +8,9 @@ commands:
         value: record_type
       - name: match
         value: match_string
+  addhost:
+    sourcePath: /addhost.js
+    description: Adds an AWS route53 hostname
+    parameters:
+      - name: hostname
+      - name: ip_address
