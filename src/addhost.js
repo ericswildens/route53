@@ -36,12 +36,20 @@ async function _command(params, commandText, secrets = {}) {
        ]
      }
    };
-  return route53.changeResourceRecordSets(changeParams).promise().then(function(data) {
-    return {
-      "response_type": "in_channel",
-      "text": 'hostname ' + hostname + ' added. Route53 reponse: ' + JSON.stringify(data)
-    };
-  });
+  return route53.changeResourceRecordSets(changeParams).promise().then(
+    function(data) {
+      return {
+        "response_type": "in_channel",
+        "text": 'hostname ' + hostname + ' added. Route53 status: ' + data.ChangeInfo.Status
+      };
+    },
+    function(err) {
+      return {
+        "response_type": "in_channel",
+        "text": "Error: " + JSON.stringify(err)
+      };
+    }
+  );
 }
 
 const main = async ({__secrets = {}, commandText, ...params}) => ({body: await _command(params, commandText, __secrets)});
