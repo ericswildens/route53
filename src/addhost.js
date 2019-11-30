@@ -5,6 +5,13 @@ async function _command(params, commandText, secrets = {}) {
     hostname,
     ip_address
   } = params;
+  
+  if (!secrets.route53AccessKey || !secrets.route53SecretKey || !secrets.route53ZoneId) {
+    return {
+      response_type: 'in_channel', // or `ephemeral` for private response
+      text: "You must create secrets for route53AccessKey, route53SecretKey and route53ZoneId to use this command"
+    };
+  }
 
   const AWS = require('aws-sdk');
 
